@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Asset, TvlHistoryItem } from "../models/assets.model";
+import { Asset, ChartDataItem } from "../models/assets.model";
 
 interface ApiResp {
   data: Asset[],
@@ -8,7 +8,7 @@ interface ApiResp {
 
 const apiPath = 'https://api.multifarm.fi/jay_flamingo_random_6ix_vegas/get_assets?pg=1&tvl_min=50000&sort=tvlStaked&sort_order=desc&farms_tvl_staked_gte=10000000'
 
-function useChartData(): TvlHistoryItem[] {
+function useChartData(): ChartDataItem[] {
   const [data, setData] = useState<Asset[]>(null)
 
   useEffect(() => {
@@ -38,7 +38,7 @@ function useChartData(): TvlHistoryItem[] {
   return mapChartData(selectedFarm.tvlStakedHistory).reverse()
 }
 
-function mapChartData(data: TvlHistoryItem[]): TvlHistoryItem[] {
+function mapChartData(data: ChartDataItem[]): ChartDataItem[] {
   return data.map(({ date, value }) => ({
     date: new Date(date).getTime(),
     value

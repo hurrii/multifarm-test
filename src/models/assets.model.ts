@@ -4,10 +4,10 @@ export interface Asset {
 }
 
 interface SelectedFarm {
-  tvlStakedHistory: TvlHistoryItem[]
+  tvlStakedHistory: ChartDataItem[]
 }
 
-export interface TvlHistoryItem {
+export interface ChartDataItem {
   date: string | number;
   value: number;
 }
