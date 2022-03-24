@@ -9,24 +9,32 @@ function App() {
 
   return (
     <div className="page">
-      <div className="row charts-wrapper">
-        <div className="col-6">
-         <AssetAreaChart
-          chartData={ aprMockData }
-          valueFormatter={ formatAprTickValue }
-          title='Asset APR (y)'
-          />
-        </div>
 
-        <div className="col-6">
-          {
-            chartData
-            &&
-            <AssetAreaChart
-              title='Asset TVL'
-              chartData={ chartData }
-              valueFormatter={ formatTVLTickValue }/>
-          }
+      <div className="charts-wrapper">
+        <p className="title">
+          <span className="farmName">Lido</span>:
+          LUNA
+        </p>
+
+        <div className="row charts-row">
+          <div className="col-6">
+          <AssetAreaChart
+            chartData={ aprMockData }
+            valueFormatter={ formatAprTickValue }
+            title='Asset APR (y)'
+            />
+          </div>
+
+          <div className="col-6">
+            {
+              chartData
+              &&
+              <AssetAreaChart
+                title='Asset TVL'
+                chartData={ chartData }
+                valueFormatter={ formatTVLTickValue }/>
+            }
+          </div>
         </div>
       </div>
     </div>
