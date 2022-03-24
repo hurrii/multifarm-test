@@ -19,9 +19,7 @@ function useChartData(): TvlHistoryItem[] {
 
         setData(result?.data)
       } catch (error) {
-        setData(null)
-
-        console.warn(error);
+        console.error(error);
         throw error;
       }
     }
@@ -35,9 +33,16 @@ function useChartData(): TvlHistoryItem[] {
 
   const selectedFarm = asset?.selected_farm[0];
 
-  if (!selectedFarm) { return null; }
+  if (!(selectedFarm?.tvlStakedHistory)) { return null; }
 
-  return selectedFarm?.tvlStakedHistory || null
+  return mapChartData(selectedFarm.tvlStakedHistory).reverse()
+}
+
+function mapChartData(data: TvlHistoryItem[]): TvlHistoryItem[] {
+  return data.map(({ date, value }) => ({
+    date: new Date(date).getTime(),
+    value
+  }))
 }
 
 export default useChartData;

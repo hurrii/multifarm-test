@@ -8,6 +8,6 @@ interface SelectedFarm {
 }
 
 export interface TvlHistoryItem {
-  date: string;
+  date: string | number;
   value: number;
 }
